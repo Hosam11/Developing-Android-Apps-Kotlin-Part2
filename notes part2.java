@@ -1,5 +1,5 @@
 6- 
-    (1)
+	(1)
     /*
     RoomDataBase:  this class is abstract coz room creates the implemntaion for it for us 
     */
@@ -102,3 +102,21 @@
        This is sensible for many coroutine started by a ViewModel, as they will eventually result 
        in an update of the UI after performing some processing,
     */
+
+7- 
+	(1) 
+	/*
+	-> The adapter lets you convert one type of plug to another, which is really one interface 
+		into another and make it work nicely. The adapter pattern in software engineering helps an object 
+		to work together nicely with another API just like how a power adapter lets your laptop charge 
+		when you are traveling.
+
+	-> we built an adaptor which adapts our data into something that can be used by RecyclerView.
+		Concretely, our data is stored in a room database. We'll build an adapter that adapts the data from
+		the room database into something that Recyclerview knows how to display.
+	*/
+	(2)
+	/*
+	-> RecyclerView won't use data directly. In fact, it won't even know SleepNight exists.
+		We will use adapter to expose or adapt the data into the RecyclerView API.
+	*/

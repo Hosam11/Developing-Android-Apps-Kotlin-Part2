@@ -1,16 +1,13 @@
 package com.example.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
+import androidx.lifecycle.*
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.formatNights
-import kotlinx.coroutines.*
 import com.example.android.trackmysleepquality.sleepquality.SleepQualityFragment
+import com.example.android.trackmysleepquality.sleepquality.SleepQualityViewModel
+import kotlinx.coroutines.*
 
 /**
  * ViewModel for SleepTrackerFragment.
@@ -19,41 +16,52 @@ class SleepTrackerViewModel(
         val database: SleepDatabaseDao,
         application: Application) : AndroidViewModel(application) {
 
+    /**
+     * you can replace the two line below with  [viewModelScope] that indicate to scope
+     * and also remove the override for [onCleared] as i did in [SleepQualityViewModel]
+     */
     private var viewModelJob = Job()
     private var uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
     private var tonight = MutableLiveData<SleepNight?>()
 
     // FixMe why this not in coroutines?
     private val nights = database.getAllNights()
+
     /**
      * Converted nights to Spanned for displaying.
      */
     val nightsString = Transformations.map(nights) {
         formatNights(it, application.resources)
     }
+
     /**
      * Variable that tells the Fragment to navigate to a specific [SleepQualityFragment]
      *
      * This is private because we don't want to expose setting this value to the Fragment.
      */
     private val _navigateToSleepQuality = MutableLiveData<SleepNight>()
+
     /**
      * If this is non-null, immediately navigate to [SleepQualityFragment] and call [doneNavigation]
      */
     val navigateToSleepQuality: LiveData<SleepNight>
         get() = _navigateToSleepQuality
+
     /**
      * If tonight has not been set, then the START button should be visible.
      */
     val startButtonVisible = Transformations.map(tonight) {
         it == null
     }
+
     /**
      * If tonight has been set, then the STOP button should be visible.
      */
     val stopButtonVisible = Transformations.map(tonight) {
         it != null
     }
+
     /**
      * If there are any nights in the database, show the CLEAR button.
      */
@@ -67,6 +75,7 @@ class SleepTrackerViewModel(
      * This is private because we don't want to expose setting this value to the Fragment.
      */
     private val _showSnackbarEvent = MutableLiveData<Boolean>()
+
     /**
      * If this is true, immediately `show()` a toast and call `doneShowSnackbar()`.
      */
@@ -80,11 +89,11 @@ class SleepTrackerViewModel(
      * It will clear the toast request, so if the user rotates their phone it won't show a duplicate
      * toast.
      */
-    fun doneShowSnackbar(){
+    fun doneShowSnackbar() {
         _showSnackbarEvent.value = false
     }
 
-    fun doneNavigation(){
+    fun doneNavigation() {
         _navigateToSleepQuality.value = null
     }
 
@@ -103,6 +112,7 @@ class SleepTrackerViewModel(
             tonight.value = getTonightFromDatabase()
         }
     }
+
     /**
      *  Handling the case of the stopped app or forgotten recording,
      *  the start and end times will be the same.j
@@ -122,7 +132,7 @@ class SleepTrackerViewModel(
 
 
     fun onStartTracking() {
-        uiScope.launch {
+        viewModelScope.launch {
             // Create a new night, which captures the current time,
             // and insert it into the database.
             val newNight = SleepNight()
