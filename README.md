@@ -27,3 +27,24 @@ This app demonstrates the following views and techniques:
 | :---: |:---:| :---:|
 | ![startSleeping](https://user-images.githubusercontent.com/18370055/97105093-3fcf9500-16c1-11eb-99c9-1043a78bfb71.PNG) | ![sleepQuality](https://user-images.githubusercontent.com/18370055/97105092-3f36fe80-16c1-11eb-980b-5ba7a16d4fa7.PNG) | ![allSleepingData](https://user-images.githubusercontent.com/18370055/97105091-3e9e6800-16c1-11eb-9e62-a9e46078ed56.PNG) |
 ##
+
+
+## 6- RecyclerView - SleepTrackerWithRecyclerView App
+* Use a RecyclerView to efficiently display lists and grids of items for complex lists and grids.
+* Make RecyclerView more efficient and your code easier to maintain and extend. 
+* DiffUtil and data binding with RecyclerView
+* Make items in a RecyclerView clickable. 
+* Add more than one view holder and layout to lists and grids in a RecyclerView
+
+## Code Link
+* <a href="https://github.com/Hosam11/Developing-Android-Apps-Kotlin-Part2/tree/main/SleepTrackerRecyclerView" target="_blank"> **SleepTrackerRecyclerView App**</a> 
+
+### Screenshots
+|  | | |
+| :---: |:---:| :---:|
+|![verticalRecyclerView](https://user-images.githubusercontent.com/18370055/97275585-c65db100-183e-11eb-96a4-0b2ee0d3879d.PNG) |  ![gridListWithTitle](https://user-images.githubusercontent.com/18370055/97275582-c52c8400-183e-11eb-9572-56fc9cb4ebad.PNG) | ![itemDetails](https://user-images.githubusercontent.com/18370055/97275584-c65db100-183e-11eb-8ede-7441419ce3e2.PNG) |
+
+
+
+
+
