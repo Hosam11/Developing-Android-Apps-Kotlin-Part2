@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
@@ -46,6 +48,35 @@ class SleepTrackerFragment : Fragment() {
         binding.sleepTrackerViewModel = sleepTrackerViewModel
 
         binding.lifecycleOwner = this
+
+        val adapter = SleepNightAdapter(SleepNightAdapter.SleepNightListener { nightId ->
+            sleepTrackerViewModel.onSleepNightClicked(nightId)
+            Toast.makeText(context,  nightId.toString()  ,Toast.LENGTH_SHORT).show()
+        })
+
+        sleepTrackerViewModel.navigateToSleepDataQuality.observe(viewLifecycleOwner,
+                Observer { nightKey ->
+                    nightKey?.let {
+                        this.findNavController().navigate(SleepTrackerFragmentDirections
+                                .actionSleepTrackerFragmentToSleepDetailFragment(nightKey))
+                        sleepTrackerViewModel.onSleepDataQualityNavigated()
+                    }
+                })
+
+        binding.sleepList.adapter = adapter
+
+        val gridLayoutManager = GridLayoutManager(activity, 3)
+        binding.sleepList.layoutManager = gridLayoutManager
+
+        sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                // tell ListAdapter that a new version of the list is available.
+                // When this method is called, the ListAdapter diffs the new list against the old one
+                // and detects items that were added, removed, moved, or changed.
+                // Then the ListAdapter updates the items shown by RecyclerView
+                adapter.submitList(it)
+            }
+        })
 
         // Add an Observer on the state variable for showing a Snackbar message
         // when the CLEAR button is pressed.

@@ -72,8 +72,8 @@
     -> Job
        - a job is anything that can be canceled, All coroutines have a job, and you can use it to cancel the coroutine.
        - Jobs can be arranged into parent-child hierarchies so that cancellation of a parent leads to 
-        an immediate cancellation of all its children, which is a lot more convenient than if we 
-        had to do this manually for each coroutine.
+        an immediate cancellation of all its children, which is a lot more convenient than if we had to 
+        do this manually for each coroutine.
     -> Dispatcher 
        The dispatcher sends off coroutines to run on various threads.
        For example, dispatcher.main will run tasks on the main thread,
@@ -104,7 +104,7 @@
     */
 
 7- 
-	(1) 
+	(1) Adapter
 	/*
 	-> The adapter lets you convert one type of plug to another, which is really one interface 
 		into another and make it work nicely. The adapter pattern in software engineering helps an object 
@@ -115,8 +115,67 @@
 		Concretely, our data is stored in a room database. We'll build an adapter that adapts the data from
 		the room database into something that Recyclerview knows how to display.
 	*/
-	(2)
+	(2) RecyclerView
 	/*
 	-> RecyclerView won't use data directly. In fact, it won't even know SleepNight exists.
 		We will use adapter to expose or adapt the data into the RecyclerView API.
-	*/
+  */
+  (3) inflate layout
+  /*
+  -> To inflate the layout from XML, you use a LayoutInflator, just like you did in activities or fragments.
+      You can also create a LayoutInflater from any view or ViewGroup by passing to context. Here 
+      we are saying LayoutInflater.from parent.context. That means you will create a LayoutInflater 
+      based on the parent view. It's somewhat important to use the right context.
+
+  -> Views know a lot about themselves and LayoutInflater uses that information to inflate new views correctly.
+    If you just pass a random context here,for example, the application context, you might get views with 
+    unexpected colors, forms or even sizes. Next, we just use the LayoutInflater object to inflate TextItemView.
+  */
+  (4) notifyDataSetChanged()
+  /*
+  -> NotifyDatasetChanged tells RecyclerView that the entire list is potentially invalid. As a result,
+      RecyclerView has to re-bind and re-draw every item in the list. This is true even if the item that has 
+      been updated isn't even on the screen right now. This can be really expensive, especially if you have 
+      a complex list of items. It's easy for this to take long enough that it's visible to the user.
+      
+  -> NotifyDataSetChanged causes a lot of screen updates, which can lead to poor performance for your app.
+    In extreme cases, this might show up as a flicker to the user as the screen updates. More likely,
+    this will show up as a hiccup while scrolling.
+  */
+  (5) DiffUtil
+  /*
+  -> DiffUtil, for calculating diffs or differences between two lists. It will take an old list and the new list,
+    and figure out what's different. It will find items that were added, removed, or changed.
+    Then, it will use an algorithm called a Eugene W. Myers's difference algorithm to figure out the minimum number of changes 
+    to make from the old list to produce the new list. That means, instead of adding an item and removing it 
+    somewhere else, it will figure out that, you can just move it, for example.
+  */
+  (6) ListAdapter
+  /*
+  -> ListAdapter keeps track of the list for you and notifies the adapter when the list is updated. and even 
+    notifying the adapter when the list is updated
+  */
+  (7) Binding Adapters 
+  /*
+  -> Binding adapters are adapters that take your data and adapt it into something that data binding 
+    can use to bind a view, like text or an image
+  
+  -> The binding adapter is responsible for updating the view to represent the data
+  */
+  (8) executePendingBindings()
+  /*
+  -> This call is an optimization that asks data binding to execute any pending bindings right away.
+  -> It's always a good idea to call executePendingBindings() when you use binding adapters in a RecyclerView,
+    because it can slightly speed up sizing the views
+  */
+  (9) Header
+  /*
+  -> Recycler view displays a list of data and every item in the list corresponds to an index numbers 
+    starting from zero.
+  -> First Way: if you want to show a header at the top of the table, we need to return a view holder 
+    for the header while link up to zero index item. Then all the other items would be mapped with 
+    the header offset. So the sleep night object at the beginning of the list would end up in 
+    the adapter position one. Continuing with the index increased by one for each element of the list.
+  -> Second Way: Another way to add headers is to modify the pecking datasets for your data grid.
+    you can modify the list to include items to represent a header.
+  */

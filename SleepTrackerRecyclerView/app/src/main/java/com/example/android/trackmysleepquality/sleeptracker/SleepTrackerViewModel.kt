@@ -128,6 +128,8 @@ class SleepTrackerViewModel(
         _navigateToSleepDataQuality.value = null
     }
 
+
+
     init {
         initializeTonight()
     }
