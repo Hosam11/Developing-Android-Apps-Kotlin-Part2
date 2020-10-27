@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -51,7 +50,7 @@ class SleepTrackerFragment : Fragment() {
 
         val adapter = SleepNightAdapter(SleepNightAdapter.SleepNightListener { nightId ->
             sleepTrackerViewModel.onSleepNightClicked(nightId)
-            Toast.makeText(context,  nightId.toString()  ,Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context,  nightId.toString()  ,Toast.LENGTH_SHORT).show()
         })
 
         sleepTrackerViewModel.navigateToSleepDataQuality.observe(viewLifecycleOwner,
@@ -66,6 +65,15 @@ class SleepTrackerFragment : Fragment() {
         binding.sleepList.adapter = adapter
 
         val gridLayoutManager = GridLayoutManager(activity, 3)
+
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) = when (position) {
+                0 -> 3
+                else -> 1
+            }
+
+        }
+
         binding.sleepList.layoutManager = gridLayoutManager
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner, Observer {
@@ -74,7 +82,7 @@ class SleepTrackerFragment : Fragment() {
                 // When this method is called, the ListAdapter diffs the new list against the old one
                 // and detects items that were added, removed, moved, or changed.
                 // Then the ListAdapter updates the items shown by RecyclerView
-                adapter.submitList(it)
+                adapter.addHeaderAndSubmitList(it)
             }
         })
 
@@ -114,4 +122,5 @@ class SleepTrackerFragment : Fragment() {
 
         return binding.root
     }
+
 }
