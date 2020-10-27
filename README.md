@@ -29,7 +29,7 @@ This app demonstrates the following views and techniques:
 ##
 
 
-## 6- RecyclerView - SleepTrackerWithRecyclerView App
+## 7- RecyclerView - SleepTrackerWithRecyclerView App
 * Use a RecyclerView to efficiently display lists and grids of items for complex lists and grids.
 * Make RecyclerView more efficient and your code easier to maintain and extend. 
 * DiffUtil and data binding with RecyclerView
