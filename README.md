@@ -44,6 +44,24 @@ This app demonstrates the following views and techniques:
 | :---: |:---:| :---:|
 |![verticalRecyclerView](https://user-images.githubusercontent.com/18370055/97275585-c65db100-183e-11eb-96a4-0b2ee0d3879d.PNG) |  ![gridListWithTitle](https://user-images.githubusercontent.com/18370055/97275582-c52c8400-183e-11eb-9572-56fc9cb4ebad.PNG) | ![itemDetails](https://user-images.githubusercontent.com/18370055/97275584-c65db100-183e-11eb-8ede-7441419ce3e2.PNG) |
 
+## 8- Connecting to the internet - MarsRealEstate App
+* Simple demo app using ViewModel & LiveData with Retrofit, Glide and Moshi in Kotlin to dowload data from api.
+
+This app demonstrates the following views and techniques:
+* Retrofit to make api calls to an HTTP web service
+* Moshi which handles the deserialization of the returned JSON to Kotlin data objects
+* Glide to load and cache images by URL.
+* ViewModel, LiveData, Data Binding with binding adapters
+* Navigation with the SafeArgs plugin for parameter passing between fragments
+
+## Code Link
+* <a href="https://github.com/Hosam11/Developing-Android-Apps-Kotlin-Part2/tree/main/MarsRealEstate" target="_blank"> **MarsRealEstate App**</a> 
+
+### Screenshots
+|  | |
+| :---: |:---:|
+|![homeWithMeanu](https://user-images.githubusercontent.com/18370055/97576226-8e996980-19f6-11eb-9cba-b5bb41504cdc.PNG) | ![selectedItem](https://user-images.githubusercontent.com/18370055/97576232-90632d00-19f6-11eb-9a5a-bc54ab55a1ca.PNG)| 
+
 
 
 
