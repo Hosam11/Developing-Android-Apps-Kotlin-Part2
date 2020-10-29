@@ -49,9 +49,7 @@ class SleepNightAdapter(private val clickListener: SleepNightListener) :
                 val nightItem = getItem(position) as DataItem.SleepNightItem
                 holder.bind(nightItem.sleepNight, clickListener)
             }
-            is TextViewHolder -> {
 
-            }
         }
     }
 
@@ -103,7 +101,6 @@ class SleepNightAdapter(private val clickListener: SleepNightListener) :
 
     }
 
-
     class SleepNightDiffCallback : DiffUtil.ItemCallback<DataItem>() {
         override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
             return oldItem.id == newItem.id
@@ -117,10 +114,7 @@ class SleepNightAdapter(private val clickListener: SleepNightListener) :
 
     class SleepNightListener(val clickListener: (nightId: Long) -> Unit) {
         fun onClick(night: SleepNight) = clickListener(night.nightId)
-
-
     }
-
 
     sealed class DataItem {
         data class SleepNightItem(val sleepNight: SleepNight) : DataItem() {

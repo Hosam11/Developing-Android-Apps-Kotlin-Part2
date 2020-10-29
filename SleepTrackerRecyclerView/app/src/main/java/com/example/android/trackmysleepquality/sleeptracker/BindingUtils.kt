@@ -12,12 +12,11 @@ import com.example.android.trackmysleepquality.database.SleepNight
 
 // Binding adapters are adapters that take your data and adapt it into
 // something that data binding can use to bind a view, like text or an image
-
 @BindingAdapter("sleepDurationFormatted")
-fun TextView.setSleepDurationFormatted(sleepNight: SleepNight?) {
+fun setSleepDurationFormatted(tv :TextView ,sleepNight: SleepNight? ) {
     sleepNight?.let {
-        text = convertDurationToFormatted(sleepNight.startTimeMilli,
-                sleepNight.endTimeMilli, context.resources)
+        tv.text = convertDurationToFormatted(sleepNight.startTimeMilli,
+                sleepNight.endTimeMilli, tv.context.resources)
     }
 
 }

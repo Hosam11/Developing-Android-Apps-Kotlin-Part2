@@ -18,11 +18,15 @@
 package com.example.android.marsrealestate.overview
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.android.marsrealestate.R
 import com.example.android.marsrealestate.databinding.FragmentOverviewBinding
+import com.example.android.marsrealestate.network.MarsApiFilter
 
 /**
  * This fragment shows the the status of the Mars real-estate web services transaction.
@@ -43,12 +47,42 @@ class OverviewFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val binding = FragmentOverviewBinding.inflate(inflater)
+        // val binding = GridViewItemBinding.inflate(inflater)
+
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
+
+        // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
+        // tells the viewModel when our property is clicked
+        val adapter = PhotoGridAdapter(PhotoGridAdapter.MarsPropertyClickListener { marsProperty ->
+            Log.i("test_click", "OverViewFragment() -- PhotoGridAdapter " + marsProperty.id)
+            viewModel.displayPropertiesDetails(marsProperty)
+        })
+
+        binding.propertiesList.adapter = adapter
+
+        // Observe the navigateToSelectedProperty LiveData and Navigate when it isn't null
+        // After navigating, call displayPropertyDetailsComplete() so that the ViewModel is ready
+        // for another navigation event.
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                this.findNavController().navigate(OverviewFragmentDirections.actionShowDetail(it))
+                viewModel.displayPropertiesDetailsCompelet()
+            }
+        })
+
+
+        // observe on the list data to fill the RecyclerView
+        // or can use BindingAdapter as in that app
+        /*viewModel.properties.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })*/
 
         setHasOptionsMenu(true)
         return binding.root
@@ -59,6 +93,24 @@ class OverviewFragment : Fragment() {
      */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.overflow_menu, menu)
+
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    /**
+     * Updates the filter in the [OverviewViewModel] when the menu items are selected from the
+     * overflow menu.
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        viewModel.updateFilter(when (item.itemId) {
+            R.id.show_buy_menu -> MarsApiFilter.SHOW_BUY
+            R.id.show_rent_menu -> MarsApiFilter.SHOW_RENT
+            else -> MarsApiFilter.SHOW_ALL
+        })
+
+        return true
+    }
 }
+
+
+
