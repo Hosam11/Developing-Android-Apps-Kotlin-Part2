@@ -247,3 +247,25 @@
     -> A bundle is a parcelable object that contains a key value store of parcelable objects. We use 
       bundles as the argument property in fragments,
     */
+9- 
+    (1)
+    /* 
+    -> when we query room from the UI thread and it returns a basic type like list, it will block the UI thread.
+      When we return a live data, room will do the database query in the background for us.
+    */
+    (2)
+    /*
+    -> Reading and writing to disk or disk I/O is very slow compared to reading or writing variables that are
+      stored in RAM. In addition, the low-level APIs that the database uses are blocking, that means 
+      they'll always block a thread until the read or write operation is complete.
+      
+    ->Because of this,  we have to treat disk I/O separately when using coroutines. It's important that 
+      disk I/O runs on  the I/O dispatcher. This is a dispatcher tuned specifically for running tasks that 
+      read and write to disk, like database operations. You can do this by calling withContext Dispatchers.IO.
+      
+    -> withContext(Dispater.IO) { /.. } 
+      WithContext forces a Kotlin coroutine to switch to the dispatcher specified. By writing it this way,
+      refreshVideos is now safe to call from any dispatcher,
+      even the main thread.
+      It will take care of finding an I/O thread to safely run the database operation.
+    */
