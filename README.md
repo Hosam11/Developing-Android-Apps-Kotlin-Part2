@@ -62,7 +62,15 @@ This app demonstrates the following views and techniques:
 | :---: |:---:|
 |![homeWithMeanu](https://user-images.githubusercontent.com/18370055/97576226-8e996980-19f6-11eb-9cba-b5bb41504cdc.PNG) | ![selectedItem](https://user-images.githubusercontent.com/18370055/97576232-90632d00-19f6-11eb-9a5a-bc54ab55a1ca.PNG)| 
 
+##
 
 
+## 9- Repository - DevBytes App
+
+DevByte Viewer is an example app that showcases using Room and a Repository to create an offline cache.
+In addition, it also covers how to use WorkManager for scheduling periodic work. In this app it's used to setup a daily background data sync.
+
+## Code Link
+* <a href="https://github.com/Hosam11/Developing-Android-Apps-Kotlin-Part2/tree/main/DevBytes" target="_blank"> **DevBytes App**</a> 
 
 
