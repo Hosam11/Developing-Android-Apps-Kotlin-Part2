@@ -269,3 +269,9 @@
       even the main thread.
       It will take care of finding an I/O thread to safely run the database operation.
     */
+    (3)
+    /*
+    -> WorkManager is a Jetpack library to manage work while your app may be in the background or even not running.
+
+    -> you don't tell WorkManager how to do work, but rather you tell it under what constraints to do the work.
+    */
