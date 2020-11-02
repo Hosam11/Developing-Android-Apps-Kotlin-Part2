@@ -181,97 +181,105 @@
   */
 
 8- 
-    (1) Web Servers
-    /*
-    -> Web servers today run Web services using a common stateless Web architecture known as REST,
-      which stands for Representational State Transfer.
-    -> Web services that offer this architecture are known as RESTful services.
-    */
-    (2) RESTful
-    /*
-    -> RESTful services are built using the standard Web components and protocols.Requests are made to 
-      RESTful Web services in a standardized way via URIs. The familiar Web URL is actually a type of URI.
+  (1) Web Servers
+  /*
+  -> Web servers today run Web services using a common stateless Web architecture known as REST,
+    which stands for Representational State Transfer.
+  -> Web services that offer this architecture are known as RESTful services.
+  */
+  (2) RESTful
+  /*
+  -> RESTful services are built using the standard Web components and protocols.Requests are made to 
+    RESTful Web services in a standardized way via URIs. The familiar Web URL is actually a type of URI.
 
-    -> Each Web services requests contains a URI and is transferred to our server using the same HTTP protocol 
-      that's used by Web browsers. HTTP requests contain an operation to tell the server what to do. 
-      Common HTTP operations include GET for retrieving server data,
-    */
-    (3)
-    /*
-    -> scalar converter. A library that allows retrofit to return the JSON result as a string.
-    */
-    (4) RetroFit
-    /*
-    -> RetroFit library creates URIs for the Web service based on the parameters we pass to it 
-      so we can focus on app functionality.
+  -> Each Web services requests contains a URI and is transferred to our server using the same HTTP protocol 
+    that's used by Web browsers. HTTP requests contain an operation to tell the server what to do. 
+    Common HTTP operations include GET for retrieving server data,
+  */
+  (3)
+  /*
+  -> scalar converter. A library that allows retrofit to return the JSON result as a string.
+  */
+  (4) RetroFit
+  /*
+  -> RetroFit library creates URIs for the Web service based on the parameters we pass to it 
+    so we can focus on app functionality.
 
-    -> Retrofit is a library that creates a network API for our app based on the content from our web service.
-      It fetches data from our web service and route it through a separate converter library that 
-      knows how to decode the data and return it in a form of useful objects.
+  -> Retrofit is a library that creates a network API for our app based on the content from our web service.
+    It fetches data from our web service and route it through a separate converter library that 
+    knows how to decode the data and return it in a form of useful objects.
 
-    -> Retrofit can support any data format returned from our web service with the right converter library
-    
-    > retrofit includes built-in support for libraries that parse popular web data formats, such as XML and JSON.
-      After supplying retrofit with the right converter libraries
-    */
-    (5) Converter Factory
-    /*
-    -> converter factory, which builds converters in the correct format for the server response.
-    -> allow retrofit to return the server response in useful format
-    -> Moshi which parses JSON into Kotlin objects. Retrofit has a converter that works with Moshi
-    */
-    (6) Deferred
-    /*
-    -> deferred is a coroutine job that can directly return a result. As a reminder, a coroutine job 
-      provides a way ofcanceling and determining the state of a coroutine. But unlike a job, deferred has a method 
-      called await. Await is a suspend function on the deferred. It causes the code to await without blocking in
-      true coroutines fashion until the value is ready, and then the value is returned.
+  -> Retrofit can support any data format returned from our web service with the right converter library
+  
+  > retrofit includes built-in support for libraries that parse popular web data formats, such as XML and JSON.
+    After supplying retrofit with the right converter libraries
+  */
+  (5) Converter Factory
+  /*
+  -> converter factory, which builds converters in the correct format for the server response.
+  -> allow retrofit to return the server response in useful format
+  -> Moshi which parses JSON into Kotlin objects. Retrofit has a converter that works with Moshi
+  */
+  (6) Deferred
+  /*
+  -> deferred is a coroutine job that can directly return a result. As a reminder, a coroutine job 
+    provides a way ofcanceling and determining the state of a coroutine. But unlike a job, deferred has a method 
+    called await. Await is a suspend function on the deferred. It causes the code to await without blocking in
+    true coroutines fashion until the value is ready, and then the value is returned.
 
-    -> You can think of it this way. Retrofit will return a deferred and then you await the result which 
-    has the appearance of synchronous code. If there's an error, await will return that by throwing an exception.
-    */
-    (7)   binding.executePendingBindings()
-    /*
-    -> Since we're calling bind() from onBindViewHolder(), having the bindings execute immediately 
-      as a practice can prevent the RecyclerView from having to perform extra calculations 
-      when it figures out how to display the list.
-    */
-    (8) Parceling  and Bundle
-    /*
-    -> parceling is a way of sharing objects between different processes by flattening an object into 
-      a stream of data called a parcel. A complex object can be stored into the parcel and then recreated 
-      from the parcel by implementing the parcelable interface, and they become parcelable objects. Each value 
-      in the object is written in sequence to the parcel. The object is recreated by reading data from 
-      the parcel in the same order it was written to populate data in a new object.
+  -> You can think of it this way. Retrofit will return a deferred and then you await the result which 
+  has the appearance of synchronous code. If there's an error, await will return that by throwing an exception.
+  */
+  (7)   binding.executePendingBindings()
+  /*
+  -> Since we're calling bind() from onBindViewHolder(), having the bindings execute immediately 
+    as a practice can prevent the RecyclerView from having to perform extra calculations 
+    when it figures out how to display the list.
+  */
+  (8) Parceling  and Bundle
+  /*
+  -> parceling is a way of sharing objects between different processes by flattening an object into 
+    a stream of data called a parcel. A complex object can be stored into the parcel and then recreated 
+    from the parcel by implementing the parcelable interface, and they become parcelable objects. Each value 
+    in the object is written in sequence to the parcel. The object is recreated by reading data from 
+    the parcel in the same order it was written to populate data in a new object.
 
-    -> A bundle is a parcelable object that contains a key value store of parcelable objects. We use 
-      bundles as the argument property in fragments,
-    */
+  -> A bundle is a parcelable object that contains a key value store of parcelable objects. We use 
+    bundles as the argument property in fragments,
+  */
 9- 
-    (1)
-    /* 
-    -> when we query room from the UI thread and it returns a basic type like list, it will block the UI thread.
-      When we return a live data, room will do the database query in the background for us.
-    */
-    (2)
-    /*
-    -> Reading and writing to disk or disk I/O is very slow compared to reading or writing variables that are
-      stored in RAM. In addition, the low-level APIs that the database uses are blocking, that means 
-      they'll always block a thread until the read or write operation is complete.
-      
-    ->Because of this,  we have to treat disk I/O separately when using coroutines. It's important that 
-      disk I/O runs on  the I/O dispatcher. This is a dispatcher tuned specifically for running tasks that 
-      read and write to disk, like database operations. You can do this by calling withContext Dispatchers.IO.
-      
-    -> withContext(Dispater.IO) { /.. } 
-      WithContext forces a Kotlin coroutine to switch to the dispatcher specified. By writing it this way,
-      refreshVideos is now safe to call from any dispatcher,
-      even the main thread.
-      It will take care of finding an I/O thread to safely run the database operation.
-    */
-    (3)
-    /*
-    -> WorkManager is a Jetpack library to manage work while your app may be in the background or even not running.
+  (1)
+  /* 
+  -> when we query room from the UI thread and it returns a basic type like list, it will block the UI thread.
+    When we return a live data, room will do the database query in the background for us.
+  */
+  (2)
+  /*
+  -> Reading and writing to disk or disk I/O is very slow compared to reading or writing variables that are
+    stored in RAM. In addition, the low-level APIs that the database uses are blocking, that means 
+    they'll always block a thread until the read or write operation is complete.
+    
+  ->Because of this,  we have to treat disk I/O separately when using coroutines. It's important that 
+    disk I/O runs on  the I/O dispatcher. This is a dispatcher tuned specifically for running tasks that 
+    read and write to disk, like database operations. You can do this by calling withContext Dispatchers.IO.
+    
+  -> withContext(Dispater.IO) { /.. } 
+    WithContext forces a Kotlin coroutine to switch to the dispatcher specified. By writing it this way,
+    refreshVideos is now safe to call from any dispatcher,
+    even the main thread.
+    It will take care of finding an I/O thread to safely run the database operation.
+  */
+  (3)
+  /*
+  -> WorkManager is a Jetpack library to manage work while your app may be in the background or even not running.
 
-    -> you don't tell WorkManager how to do work, but rather you tell it under what constraints to do the work.
-    */
+  -> you don't tell WorkManager how to do work, but rather you tell it under what constraints to do the work.
+  */
+10-
+  (1) SP
+  /*
+    -> Sp stands for scalable pixels. They're specially designed to be used for text sizes, and they'll 
+      scale based on the default text size the user configured on their phone. You can think about 24sp 
+      the same way you think about a 24 point font in a word processor. Android will take care of figuring out 
+      how large that actually should be on the screen when it draws the text.
+  */
