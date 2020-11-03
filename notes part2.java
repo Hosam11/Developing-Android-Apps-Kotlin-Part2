@@ -283,3 +283,14 @@
       the same way you think about a 24 point font in a word processor. Android will take care of figuring out 
       how large that actually should be on the screen when it draws the text.
   */
+  (2) Coordinator Layout
+  /*
+    -> coordinator layout that will let us stack our views, as well as a bunch of other neat stuff.
+      It's basically a view that lets you stack views on top of each other. You're pretty much stuck 
+      adding full-screen views or pushing things towards an edge.
+  */
+  (3) NestedScrollView
+  /*
+    -> NestedScrollView. It's basically a scroll view that you can use when it's nested inside 
+      another view with scrolling, 
+   */

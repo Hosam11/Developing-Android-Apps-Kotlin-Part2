@@ -4,7 +4,8 @@
     <string name="add_gdg">"Couldn't find a GDG in your region? Great, go ahead and start one. Fill the form below and
         expect to hear from us shortly! "
     </string>
-    <string name="application_submitted">Got your application request!! Oh well, not really. This is a test form just
+    <string name="application_submitted">
+        Got your application request!! Oh well, not really. This is a test form just
         for educational purposes. If you really want to submit your application please visit the website!
     </string>
     <string name="gdg_search">GDG Search</string>
