@@ -63,8 +63,6 @@ This app demonstrates the following views and techniques:
 |![homeWithMeanu](https://user-images.githubusercontent.com/18370055/97576226-8e996980-19f6-11eb-9cba-b5bb41504cdc.PNG) | ![selectedItem](https://user-images.githubusercontent.com/18370055/97576232-90632d00-19f6-11eb-9a5a-bc54ab55a1ca.PNG)| 
 
 ##
-
-
 ## 9- Repository - DevBytes App
 
 DevByte Viewer is an example app that showcases using Room and a Repository to create an offline cache.
@@ -73,4 +71,18 @@ In addition, it also covers how to use WorkManager for scheduling periodic work.
 ## Code Link
 * <a href="https://github.com/Hosam11/Developing-Android-Apps-Kotlin-Part2/tree/main/DevBytes" target="_blank"> **DevBytes App**</a> 
 
+##
+## 10- Designing for everyone - GDGFinder App
+* GDG Finder helps you locate GDGs around the world or start one of your own. 
+* The app implements principles of Material Designs
 
+The app demonstrate the following:
+* Styling system on Android themes, styles, attributes, and when each are used.
+* Text appearance to style text safely.
+* Material design and the material design components library.
+* Configure material components theme to style your entire application.
+* Support right to left languages and dark mode.
+* Make app accessible for users with accessibility needs
+
+## Code Link
+* <a href="https://github.com/Hosam11/Developing-Android-Apps-Kotlin-Part2/tree/main/GDGFinder" target="_blank"> **GDGFinder App**</a> 
