@@ -32,7 +32,8 @@ import com.example.android.marsrealestate.network.MarsProperty
  * data, including computing diffs between lists.
  * @param marsClickListener a lambda that takes the
  */
-class PhotoGridAdapter(private val marsClickListener: MarsPropertyClickListener) : ListAdapter<MarsProperty, PhotoGridAdapter.MarsViewHolder>(DiffCallback) {
+class PhotoGridAdapter(private val marsClickListener: MarsPropertyClickListener) 
+: ListAdapter<MarsProperty, PhotoGridAdapter.MarsViewHolder>(DiffCallback) {
 
     /**
      * The MarsPropertyViewHolder constructor takes the binding variable from the associated

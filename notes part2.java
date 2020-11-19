@@ -1,7 +1,7 @@
 6- 
 	(1)
     /*
-    RoomDataBase:  this class is abstract coz room creates the implemntaion for it for us 
+    RoomDataBase: this class is abstract coz room creates the implemntaion for it for us 
     */
     DataBaseClass
     /* 
@@ -64,7 +64,7 @@
     */
     (8) Suspend
     /*
-    -> other work happen until the resul is availble
+    -> other work happen until the result is availble
     -> suspend dose not specify this thread code runs on, its may ron on a background thread or a domin thread
     */
     (9) To use Coroutines you need

@@ -95,6 +95,7 @@ class OverviewViewModel : ViewModel() {
     private fun getMarsRealEstateProperties(filter: MarsApiFilter) {
         // is the built-in coroutine scope defined for each ViewModel in your app. Any coroutine
         // launched in this scope is automatically canceled if the ViewModel is cleared.
+
         viewModelScope.launch {
             _status.value = MarsApiStatus.LOADING
             try {

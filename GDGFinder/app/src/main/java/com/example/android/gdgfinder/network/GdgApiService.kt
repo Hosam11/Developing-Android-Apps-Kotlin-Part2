@@ -16,6 +16,7 @@ interface GdgApiService {
     // The Coroutine Call Adapter allows us to return a Deferred, a Job with a result
             Deferred<GdgResponse>
 }
+
 private val moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
         .build()
@@ -27,5 +28,7 @@ private val retrofit = Retrofit.Builder()
         .build()
 
 object GdgApi {
-    val retrofitService : GdgApiService by lazy { retrofit.create(GdgApiService::class.java) }
+    val retrofitService : GdgApiService by lazy { 
+            retrofit.create(GdgApiService::class.java)
+        }
 }
